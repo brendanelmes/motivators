@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <span id="greeting-message">{{ greeting }}</span>
+</mat-toolbar>
+
+<button
+  id="greeting-button"
+  class="greeting-button"
+  mat-raised-button
+  color="primary"
+  (click)="getGreeting()"
+>
+  Get Greeting
+</button>
