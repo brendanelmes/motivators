@@ -1,26 +1,27 @@
-import { Component } from '@angular/core';
-import { tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Greeting } from './greeting.model';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable, of, tap } from 'rxjs';
+import { Team } from './app.model';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  constructor(private http: HttpClient) {}
+export class AppComponent implements OnInit {
+  constructor(private appService: AppService) {}
 
-  greeting: string = 'Waiting to be greeted';
+  teams$: Observable<Team[]> = of([]);
 
-  public getGreeting(): void {
-    this.http
-      .get<Greeting>('/api/')
-      .pipe(
-        tap((res) => {
-          this.greeting = res.greeting;
-        })
-      )
-      .subscribe();
+  ngOnInit(): void {
+    this.getTeams();
+  }
+
+  public getTeams(): void {
+    this.teams$ = this.appService.getTeams();
+  }
+
+  public createTeam(name: string, ranking: string): void {
+    this.appService.createTeam(name, ranking).subscribe();
   }
 }

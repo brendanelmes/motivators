@@ -1,13 +1,57 @@
-<mat-toolbar>
-  <span id="greeting-message">{{ greeting }}</span>
+<mat-toolbar color="primary">
+  <span id="title">Motivators</span>
 </mat-toolbar>
 
+<mat-card>
+  <mat-card-title>Create a new team</mat-card-title>
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Ranking</mat-label>
+        <input matInput />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      id="create-button"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      (click)="createTeam('team5', '3')"
+    >
+      Create Team
+    </button>
+  </mat-card-actions>
+</mat-card>
+
 <button
-  id="greeting-button"
-  class="greeting-button"
+  id="update-button"
   mat-raised-button
   color="primary"
-  (click)="getGreeting()"
+  (click)="getTeams()"
 >
-  Get Greeting
+  Update Teams
 </button>
+
+<mat-table [dataSource]="teams$">
+  <!-- User name Definition -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+  </ng-container>
+
+  <!-- Age Definition -->
+  <ng-container matColumnDef="ranking">
+    <mat-header-cell *matHeaderCellDef> Ranking </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.ranking }} </mat-cell>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <mat-header-row *matHeaderRowDef="['name', 'ranking']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['name', 'ranking']"></mat-row>
+</mat-table>
