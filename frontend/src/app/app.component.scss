@@ -1,20 +1,61 @@
-button,
-mat-card,
-mat-form-field,
-mat-table {
-  margin: 2rem;
+mat-toolbar {
+  width: 100%;
 }
 
-button {
+.page-content {
+  width: 100%;
+}
+
+mat-card-content {
+  margin-top: 1rem;
+}
+
+.toolbar-content {
+  width: 1128px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 1176px) {
+  .toolbar-content {
+    width: 100%;
+  }
+}
+
+.page-content {
+  max-width: 1128px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-button {
   float: right;
+}
+
+.action-buttons {
+  margin: 2rem 0;
+  margin-left: auto;
+}
+
+.action-buttons button:not(:last-child) {
+  margin-right: 2rem;
 }
 
 mat-card {
   display: inline-block;
+  margin-right: auto;
+  margin-top: 2rem;
+  padding: 2rem;
 }
 
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+}
+
+form mat-form-field:not(:last-child) {
+  margin-right: 2rem;
 }
